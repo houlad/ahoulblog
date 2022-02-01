@@ -5,8 +5,11 @@ date: '2017-07-31'
 slug: exploring-violent-crime-in-louisville
 categories:
   - R
-tags: []
+tags:
+  - plot
+  - data vis
 ---
+
 
 # Introduction
   Over the past year Louisville's local news seems like it has been increasingly dominated
@@ -512,4 +515,4 @@ than a ground truth.
 
 Stay tuned for part two where I begin pilfering the dataset for insight into Louisville's theft problem.
 
-The full code used to generate this report can be found [here](https://raw.githubusercontent.com/Grollus/DataBlog/master/content/post/2017-07-31-exploring-violent-crime-in-louisville.Rmd).
+The full code used to generate this report can be found [here](https://raw.githubusercontent.com/houlad/ahoulblog/master/content/post/2017-07-31-exploring-violent-crime-in-louisville.Rmd).

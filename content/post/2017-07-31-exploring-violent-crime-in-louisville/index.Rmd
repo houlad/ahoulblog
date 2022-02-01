@@ -247,7 +247,7 @@ fluctuation.  Both of these values indicate that the mean of 2016 is different f
 this case larger than, the 2005-2015 mean.
 
 With all of that said, it is important to keep in mind the difference between statistical 
-and practical significance.  While there does appear to be a statisically significant
+and practical significance.  While there does appear to be a statistically significant
 change in the daily violent crime count, that does not necessarily mean there is a practically
 significant difference.  Looking at absolute numbers, we are looking at a difference of
 `r round(mean(sums_2016$count) -mean(sums_2005_2015$count), 2)`.  Is 1.48 more violent
@@ -263,8 +263,8 @@ increase, do you still see a significant change?  I will leave that analysis to 
 It is also informative to see where the violent crimes are centered in Louisville.
 Although this greatly simplifies the issue, if crimes are highly concentrated in certain areas
 you may have less to worry about if you live across town than if you happen to live
-right in the middle of those neighborhoods. After some additional data [preparation](https://github.com/Grollus/LouisvilleCrime/blob/master/louisville_raw_data_and_geocoding.R)
-and [geocoding](https://github.com/Grollus/LouisvilleCrime/blob/master/LouisvilleCrime/Louisville_Crime_Geocoding.R)
+right in the middle of those neighborhoods. After some additional data [preparation](https://github.com/houlad/LouisvilleCrime/blob/master/louisville_raw_data_and_geocoding.R)
+and [geocoding](https://github.com/houlad/LouisvilleCrime/blob/master/LouisvilleCrime/Louisville_Crime_Geocoding.R)
 it is simple enough to see where violent crime is taking place.
 
 ```{r crime_map1, echo = FALSE, cache = TRUE, warning = FALSE, message = FALSE}

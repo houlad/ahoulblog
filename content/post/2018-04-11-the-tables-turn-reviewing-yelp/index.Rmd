@@ -931,6 +931,6 @@ neglection of restaurant locations and names as well as entire tables of data--i
 related info.  But, one must pick and choose with a dataset like this when confronted 
 with the realities of limited time. 
 
-This initial exploration is part one of my Yelp dataset series. In part two I will build
-on this post and use review text to build a neural network to predict review ratings from
-the text of the review itself. Sounds like a fun challenge to me! Until next time.
+This initial exploration is part one of my Yelp dataset series. As always, the full code 
+for this analysis can be found [here](https://github.com/houlad/ahoulblog/blob/main/content/post/2018-04-11-the-tables-turn-reviewing-yelp/index.Rmd)
+In part two I will build on this post and use review text to build a neural network to predict review ratings from the text of the review itself. Sounds like a fun challenge to me! Until next time.

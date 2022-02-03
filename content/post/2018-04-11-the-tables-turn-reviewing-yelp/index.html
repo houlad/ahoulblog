@@ -58,28 +58,19 @@ dataset to get a sense of what I am working with.</p>
 <div id="initial-data-analysis" class="section level1">
 <h1>Initial Data Analysis</h1>
 <p>With such a big dataset, I want to get a feel for the data first. Let’s have a look at the business table
-to see how the data is structured. (Note: Initial cleaning was performed in the read_data.R script which
+to see how the data is structured. (Note: Initial cleaning was performed in the <a href="https://github.com/houlad/Yelp/blob/master/read_data.R">read_data.R</a> script which
 can be found in the repo for this project. The files were all json files–with some added wrinkles–so it’s worth
 checking that out if you are curious.)</p>
-<pre class="r"><code>restaurants &lt;- readRDS(here::here(&quot;content&quot;, &quot;post&quot;, 
-                                  &quot;Data&quot;, &#39;us_restaurants.rds&#39;))
-sample_reviews &lt;- readRDS(here::here(&quot;content&quot;, &quot;post&quot;, 
-                                     &quot;Data&quot;, &#39;sample_reviews_large.rds&#39;))
-sample_reviews$date &lt;- as.POSIXct(sample_reviews$date)
-
-str(restaurants)</code></pre>
-<pre><code>## tibble [97,714 x 10] (S3: tbl_df/tbl/data.frame)
-##  $ business_id : chr [1:97714] &quot;PfOCPjBrlQAnz__NXj9h_w&quot; &quot;PfOCPjBrlQAnz__NXj9h_w&quot; &quot;PfOCPjBrlQAnz__NXj9h_w&quot; &quot;PfOCPjBrlQAnz__NXj9h_w&quot; ...
-##  $ name        : chr [1:97714] &quot;Brick House Tavern + Tap&quot; &quot;Brick House Tavern + Tap&quot; &quot;Brick House Tavern + Tap&quot; &quot;Brick House Tavern + Tap&quot; ...
-##  $ neighborhood: chr [1:97714] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##  $ city        : chr [1:97714] &quot;Cuyahoga Falls&quot; &quot;Cuyahoga Falls&quot; &quot;Cuyahoga Falls&quot; &quot;Cuyahoga Falls&quot; ...
-##  $ state       : chr [1:97714] &quot;OH&quot; &quot;OH&quot; &quot;OH&quot; &quot;OH&quot; ...
-##  $ postal_code : chr [1:97714] &quot;44221&quot; &quot;44221&quot; &quot;44221&quot; &quot;44221&quot; ...
-##  $ stars       : num [1:97714] 3.5 3.5 3.5 3.5 3.5 3.5 4.5 4.5 4.5 4.5 ...
-##  $ review_count: int [1:97714] 116 116 116 116 116 116 3 3 3 3 ...
-##  $ is_open     : int [1:97714] 1 1 1 1 1 1 0 0 0 0 ...
-##  $ categories  : chr [1:97714] &quot;American (New)&quot; &quot;Nightlife&quot; &quot;Bars&quot; &quot;Sandwiches&quot; ...</code></pre>
-<pre class="r"><code># str(sample_reviews)</code></pre>
+<pre><code>## # A tibble: 6 x 10
+##   business_id      name  neighborhood city  state postal_code stars review_count
+##   &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;        &lt;int&gt;
+## 1 PfOCPjBrlQAnz__~ Bric~ &quot;&quot;           Cuya~ OH    44221         3.5          116
+## 2 PfOCPjBrlQAnz__~ Bric~ &quot;&quot;           Cuya~ OH    44221         3.5          116
+## 3 PfOCPjBrlQAnz__~ Bric~ &quot;&quot;           Cuya~ OH    44221         3.5          116
+## 4 PfOCPjBrlQAnz__~ Bric~ &quot;&quot;           Cuya~ OH    44221         3.5          116
+## 5 PfOCPjBrlQAnz__~ Bric~ &quot;&quot;           Cuya~ OH    44221         3.5          116
+## 6 PfOCPjBrlQAnz__~ Bric~ &quot;&quot;           Cuya~ OH    44221         3.5          116
+## # ... with 2 more variables: is_open &lt;int&gt;, categories &lt;chr&gt;</code></pre>
 <p>During the initial cleaning, I removed all non-US businesses and all businesses that did not have the ‘restaurant’ tag in the category section.
 This left about 100,000 rows of data. There are only 32,277 unique restaurants, so what
 are the other rows? Since almost every restaurant is tagged by multiple categories, the additional rows are duplicate rows of
@@ -202,19 +193,6 @@ look similar to the distributions I have seen so far, ‘Fast Food’ is quite d
 reversed–a majority of restaurants have 2-3 star ratings instead of 3-4– and the distribution is much wider.
 ‘Bars’ and ‘Nightlife’ are narrower distributions with more pronounced peaks and ‘American’ is much closer to normal
 than the others.</p>
-<pre class="r"><code>restaurants %&gt;%
-  group_by(categories)%&gt;%
-  mutate(n = n())%&gt;%
-  ungroup()%&gt;%
-  filter(n &gt;= quantile(n, .70))%&gt;%
-  group_by(categories)%&gt;%
-  ggplot(aes(stars))+
-  geom_histogram(fill = &#39;midnightblue&#39;, color = &#39;black&#39;, alpha = .7, bins = 9)+
-  facet_wrap(~categories, scales = &#39;free&#39;)+
-  my_theme()+
-  labs(x = &quot;Ratings&quot;,
-       y = &quot;# of Restaurants&quot;,
-       title = &quot;Distribution of Yelp Ratings for 6 \n most common restaurant categories&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/categories-ratings-plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <table>
 <thead>
@@ -272,7 +250,7 @@ of the peculiarities of taste.</p>
 clientele at these sort of restaurants knows, generally, what to expect, and so they are less often ‘surprised’
 (in both good and bad ways) by the food. That’s just speculation though, so who knows. Note: the low
 variance plot is actually a sample of the low variance categories because there are ~30 categories
-with a similar variance at the low end. Make sure you use the same seed we did if you want to replicate
+with a similar variance at the low end. Make sure you use the same seed I did if you want to replicate
 the plot.</p>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/low-variance-categories-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This variation by category makes some intuitive sense and is something that could be included in a standard regression
@@ -617,7 +595,7 @@ for a 5 star restaurant.</p>
 <h3>Review Length By Category</h3>
 <p>I want to briefly examine the issue discussed at the end of section 3.2.2. Am I able to discern
 differences in the text of reviews between categories. Using information I gathered above, I’ll
-filter down to review for a couple of the highest variance (Fast Food and Chicken Wings) and a couple
+filter down to reviews for a couple of the highest variance (Fast Food and Chicken Wings) and a couple
 of the lowest variance(Vegan and Vegetarian) categories.</p>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/review-text-by-categories-1.png" width="672" style="display: block; margin: auto;" />
 It appears that the higher variance categories (Chicken Wings and Fast Food) tend to have shorter poor reviews
@@ -888,7 +866,7 @@ that an NLP based approach to rating prediction will be successful.</p>
 neglection of restaurant locations and names as well as entire tables of data–ie user
 related info. But, one must pick and choose with a dataset like this when confronted
 with the realities of limited time.</p>
-<p>This initial exploration is part one of my Yelp dataset series. In part two I will build
-on this post and use review text to build a neural network to predict review ratings from
-the text of the review itself. Sounds like a fun challenge to me! Until next time.</p>
+<p>This initial exploration is part one of my Yelp dataset series. As always, the full code
+for this analysis can be found <a href="https://github.com/houlad/ahoulblog/blob/main/content/post/2018-04-11-the-tables-turn-reviewing-yelp/index.Rmd">here</a>
+In part two I will build on this post and use review text to build a neural network to predict review ratings from the text of the review itself. Sounds like a fun challenge to me! Until next time.</p>
 </div>

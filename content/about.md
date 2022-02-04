@@ -4,7 +4,9 @@ title: About
 ---
 
 Hi! I'm just a guy trying to solve problems and answer questions using data. Some people call that a data scientist.
-I'm primarily interested in data visualization, NLP, machine learning, education, energy and healthcare. I'll probably write about that stuff,
+I'm primarily interested in data visualization, simulation and modeling, but honestly I care less about the tools
+and more about the problem. I'm particularly interesting in topics around education, energy, democracy and healthcare.
+I'll probably write about that stuff,
 but I'll probably write about lots of other stuff too.
 
 In my free time you can find me running. Or hiking. Or maybe just reading outside.  If I'm not there, I'm probably roasting coffee. Delicious coffee.

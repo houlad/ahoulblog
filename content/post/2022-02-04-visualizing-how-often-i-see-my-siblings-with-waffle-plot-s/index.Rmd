@@ -357,4 +357,4 @@ weekend or holidays/birthdays. My hunch is that offsetting some of this informat
 happen around those days. Those ideas wouldn't be too hard to implement, but they are beyond the scope of this post.
 I'll leave those up to the reader!
 
-As always, the full post can be found [here](). Till next time!
+As always, the full post can be found [here](https://github.com/houlad/ahoulblog/blob/main/content/post/2022-02-04-visualizing-how-often-i-see-my-siblings-with-waffle-plot-s/index.Rmd). Till next time!
